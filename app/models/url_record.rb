@@ -12,7 +12,6 @@ class UrlRecord < ApplicationRecord
 
     def create_record(path)
       record = UrlRecord.create(path: path, num_visits: 0)
-      byebug
       shortened_url = generate_custom_url(record&.id)
       record.update(shortened_url: shortened_url)
       record.save
