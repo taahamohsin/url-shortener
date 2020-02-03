@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  description: "Reliant backend task."
+  version: "1.0.0"
+  title: "Url Shortener"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "reliant-url-shortener.herokuapp.com"
+basePath: "/"
+tags:
+- name: "urls"
+  description: "Everything about your Pets"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+paths:
+  /urls:
+    post:
+      tags:
+      - "urls"
+      summary: "Generate a new shortened url (or retrieve the existing one"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Url"
+      responses:
+        201:
+          description: "Created"
+        200:
+          description: "Ok"
+      
+   
+  /redirect/:url:
+    get:
+      summary: "Redirect to the real url from the given shortened url"
+      description: "Redirects and increments view statistics or returns a 404 if the shortened url does not exist."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "url"
+        in: "path"
+        description: "The shortened url"
+        required: true
+        type: "string"
+
+      responses:
+        302:
+          description: "Found/Redirected"
+        404:
+          description: "Not Found"
+      
+  /stats/:url:
+    get:
+      summary: "Retrieves the view statistics pertaining to the given shortened url"
+      description: "Returns the stats, or returns a 404 if the shortened url does not exist"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "url"
+        in: "path"
+        description: "The shortened url"
+        required: true
+        type: "string"
+
+      responses:
+        200:
+          description: "Ok"
+        404:
+          description: "Not Found"
+
+definitions:
+  Url:
+    type: "object"
+    properties:
+      url:
+        type: "string"
+        description: "the url to be shortened"
+  
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
