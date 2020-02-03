@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run the app locally (assuming you have ruby and bundler installed on your device):
 
-Things you may want to cover:
+```
+bundle install
+bundle exec rails s
+```
 
-* Ruby version
+To run the unit tests:
 
-* System dependencies
+```
+bundle exec rspec
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The api is deployed at: https://reliant-url-shortener.herokuapp.com/ and there's documentation on how to use it in the `swagger.yml` file. To view it, simply copy the raw text inside the file and paste it into the editor at https://editor.swagger.io/.
