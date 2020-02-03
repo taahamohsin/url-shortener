@@ -13,7 +13,7 @@ host: "reliant-url-shortener.herokuapp.com"
 basePath: "/"
 tags:
 - name: "urls"
-  description: "Everything about your Pets"
+  description: ""
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
