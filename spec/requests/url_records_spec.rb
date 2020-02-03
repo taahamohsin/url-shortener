@@ -14,6 +14,7 @@ RSpec.describe "UrlRecords" do
       end
       it 'responds with the record body with a 201' do
         post '/urls', params: { url: 'foo' }
+
         expect(JSON.parse(response.body).deep_symbolize_keys).to eq(existing_record)
         expect(response).to have_http_status(:ok)
       end

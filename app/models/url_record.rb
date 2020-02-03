@@ -1,5 +1,7 @@
 class UrlRecord < ApplicationRecord
-  ALLOWED_CHARACTERS = [('A'..'Z').to_a, ('a'..'z').to_a, (0..9).to_a, '-', '.', '_', '~', ':', '/', '?', '#', '[', ']', '@', '!', '$', '&', '\'' '(', ')', '*', '+', ',', ';', '%', '=' ].flatten
+  ALLOWED_CHARACTERS = [('A'..'Z').to_a, ('a'..'z').to_a, (0..9).to_a,
+    '-', '.', '_', '~', ':', '/', '?', '#', '[', ']', '@', '!', '$', '&',
+    '\'' '(', ')', '*', '+', ',', ';', '%', '=' ].flatten
 
   class << self
     def find_by_url(url)
@@ -17,10 +19,6 @@ class UrlRecord < ApplicationRecord
       record.save
       record
     end
-
-    def redirect(url)
-      UrlRecord.decode_url(url)
-    end
   
     private
 
@@ -32,13 +30,6 @@ class UrlRecord < ApplicationRecord
         id /= base
       end
       encoded.reverse
-    end
-
-    def decode_url(url)
-      base = ALLOWED_CHARACTERS&.length
-      id = 0
-      url.each { |char| id = (id * base + ALLOWED_CHARACTERS&.index(char)) }
-      id
     end
   end
 

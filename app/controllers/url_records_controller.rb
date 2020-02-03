@@ -3,12 +3,6 @@ class UrlRecordsController < ApplicationController
 
   # Assumption: Valid url characters are A-Z, a-z, 0-9, -, ., _, ~, :, /,
   # ?, #, [, ], @, !, $, &, ', (, ), *, +, ,, ;, %, and =
-  def index
-    existing_url = UrlRecord.find_by_url(params[:url])
-  
-    render json: existing_url
-  end
-
   def create
     existing_record = UrlRecord.find_by_url(params[:url])
     url_record = existing_record&.empty? ? UrlRecord.create_record(params[:url]) : existing_record.first
